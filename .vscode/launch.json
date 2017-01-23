@@ -1,0 +1,68 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": ".NET Core Launch (web)",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build",
+            "program": "${workspaceRoot}\\src\\Backend\\bin\\Debug\\netcoreapp1.0\\Backend.dll",
+            "args": ["--server.urls","http://localhost:5002"],
+            "cwd": "${workspaceRoot}\\src\\Backend",
+            "stopAtEntry": false,
+            "internalConsoleOptions": "openOnSessionStart",
+            "launchBrowser": {
+                "enabled": true,
+                "args": "${auto-detect-url}",
+                "windows": {
+                    "command": "cmd.exe",
+                    "args": "/C start ${auto-detect-url}"
+                },
+                "osx": {
+                    "command": "open"
+                },
+                "linux": {
+                    "command": "xdg-open"
+                }
+            },
+            "env": {
+                "ASPNETCORE_ENVIRONMENT": "Development"
+            },
+            "sourceFileMap": {
+                "/Views": "${workspaceRoot}/src/Backend/Views"
+            }
+        },
+        {
+            "name": ".NET Core Attach",
+            "type": "coreclr",
+            "request": "attach",
+            "processId": "${command.pickProcess}"
+        },
+        {
+            "name": "Launch Chrome against localhost, with sourcemaps",
+            "type": "chrome",
+            "request": "launch",
+            "url": "http://localhost:5002",
+            "sourceMaps": true,
+            "webRoot": "${workspaceRoot}/src/Backend/wwwroot"
+        },
+        {
+            "name": "Attach to Chrome, with sourcemaps",
+            "type": "chrome",
+            "request": "attach",
+            "port": 9222,  
+            "url": "http://localhost:5002",
+            "sourceMaps": true,
+            "webRoot": "${workspaceRoot}/src/Backend/wwwroot"
+        },
+        {
+            "name": "Attach to Chrome, without sourcemaps",
+            "type": "chrome",
+            "request": "attach",
+            "port": 9222,  
+            "url": "http://localhost:5002",
+            "sourceMaps": false,
+            "webRoot": "${workspaceRoot}/src/Backend/wwwroot"
+        }
+    ]
+}

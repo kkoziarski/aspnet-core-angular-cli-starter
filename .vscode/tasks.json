@@ -1,0 +1,56 @@
+{
+    "version": "0.1.0",
+    "command": "cmd",
+    "isShellCommand": true,
+    "args": ["/C"],
+    "showOutput": "always",
+    "suppressTaskName": true,
+    "options": {
+        "cwd": "${workspaceRoot}\\src\\Backend"
+    },
+    "tasks": [
+        {
+            "taskName": "build",
+            "args": [
+                "dotnet build", 
+                "Backend.csproj"
+            ],
+            "isBuildCommand": true,
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "taskName": "build dotnet",
+            "isBuildCommand": true,
+            "args": [
+                "dotnet build", 
+                "Backend.csproj"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "taskName": "start dotnet",
+            "isBuildCommand": true,
+            "args": [
+                "dotnet run"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "taskName": "start dotnet watcher",
+            "isBuildCommand": true,
+            "args": [
+                "dotnet watch run"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "taskName": "restore",
+            "isBuildCommand": true,
+            "args": [
+                "dotnet restore", 
+                "Backend.csproj"
+            ],
+            "problemMatcher": "$msCompile"
+        }
+    ]
+}
