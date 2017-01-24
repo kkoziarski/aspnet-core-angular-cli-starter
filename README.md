@@ -4,12 +4,13 @@ Angular part is based on the official Angular's [Tour of Heroes](https://angular
 
 
 # Development
-Steps to during development
-* `cd .\src\Frontend` __`> npm start`__
+## Steps during development
+* `cd .\src\Frontend` __`> npm start`__ which starts __`ng serve`__
 * `cd .\src\Backend` __`> dotnet watch run`__ or `> dotnet run`
-* open [http://localhost:4200/](http://localhost:4200/) - this is the Frontend URL created by `ng serve` 
-which is configured in `proxy.conf.json` to pass all the API requests to the running ASP.NET Core application on port :5002
-* `ng build` command will transpile and bundle all needed files and copy everything, including static files, to `wwwroot` folder of the Backend application
+* open [http://localhost:4200/](http://localhost:4200/) - this is the _Frontend_ URL created by __`ng serve`__ 
+which is configured in `proxy.conf.json` to pass all the API requests to the running ASP.NET Core application on port :5002.
+The `ng serve` does not create any files on disk and everything is served from memory.
+* __`ng build`__ command will transpile and bundle all needed files and copy everything, including static files, to `wwwroot` folder of the _Backend_ application
 
 ## EntityFramework
 * Drop database before enabling EF migrations: `dotnet ef database drop -c ApplicationDbContext`
