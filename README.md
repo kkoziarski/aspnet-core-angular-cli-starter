@@ -9,7 +9,7 @@ Steps to during development
 * `cd .\src\Backend` __`> dotnet watch run`__ or `> dotnet run`
 * open [http://localhost:4200/](http://localhost:4200/) - this is the Frontend URL created by `ng serve` 
 which is configured in `proxy.conf.json` to pass all the API requests to the running ASP.NET Core application on port :5002
-
+* `ng build` command will transpile and bundle all needed files and copy everything, including static files, to `wwwroot` folder of the Backend application
 
 ## EntityFramework
 * Drop database before enabling EF migrations: `dotnet ef database drop -c ApplicationDbContext`
