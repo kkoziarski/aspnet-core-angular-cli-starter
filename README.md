@@ -8,11 +8,12 @@ Angular part is based on the official Angular's [Tour of Heroes](https://angular
 * Remove EF migrations: `dotnet ef migrations remove`
 * __Apply the migration to the database: `dotnet ef database update -c ApplicationDbContext`__
 * Add new migration after code changes: 
+
     ```
     dotnet ef migrations add HeroDescription -c ApplicationDbContext
     dotnet ef database update -c ApplicationDbContext
     ```
-    
+
 __References & Sources:__
 
 [First version SystemJS & Gulp](https://github.com/krzyhook/aspnet-core-angular2-starter)
