@@ -2,6 +2,15 @@ This is a project to learn how to use Angular2 with ASP.NET Core and angular-cli
 
 Angular part is based on the official Angular's [Tour of Heroes](https://angular.io/docs/ts/latest/tutorial/) tutorial but using Angular-Cli instead of SystemJS.
 
+
+# Development
+Steps to during development
+* `cd .\src\Frontend` __`> npm start`__
+* `cd .\src\Backend` __`> dotnet watch run`__ or `> dotnet run`
+* open [http://localhost:4200/](http://localhost:4200/) - this is the Frontend URL created by `ng serve` 
+which is configured in `proxy.conf.json` to pass all the API requests to the running ASP.NET Core application on port :5002
+
+
 ## EntityFramework
 * Drop database before enabling EF migrations: `dotnet ef database drop -c ApplicationDbContext`
 * Enable and create EF migration: `dotnet ef migrations add InitialCreate -c ApplicationDbContext`
