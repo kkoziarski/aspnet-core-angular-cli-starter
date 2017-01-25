@@ -1,0 +1,11 @@
+<div id="search-component">
+  <h4>Hero Search</h4>
+  <div class="dropdown">
+    <input #searchBox id="search-box" (keyup)="search(searchBox.value)" />
+    <ul class="dropdown-menu search-results" [ngClass] = "{hide: isEmptyHeroes}">
+      <li *ngFor="let hero of heroes | async">
+        <a (click)="gotoDetail(hero)">{{hero.name}}</a>
+      </li>
+    </ul>
+  </div>
+</div>

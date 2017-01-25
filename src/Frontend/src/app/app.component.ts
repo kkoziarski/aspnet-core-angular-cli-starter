@@ -1,10 +1,16 @@
-import { Component } from '@angular/core';
+import { Component }          from '@angular/core';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.less']
+    moduleId: module.id,
+    selector: 'ngnco-app',
+    templateUrl: 'app.component.html'
 })
 export class AppComponent {
-  title = 'app works!';
+    title = 'Hello from AppComponent';
+    copyYear: number;
+
+    constructor() {
+        let today = new Date();
+        this.copyYear = today.getFullYear();
+    }
 }
