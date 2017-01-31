@@ -3,7 +3,6 @@ import { Router }            from '@angular/router';
 import { DataService } from '../services/dataService';
 
 @Component({
-    moduleId: module.id,
     selector: 'ngnco-scratchpad',
     templateUrl: 'scratchpad.component.html',
     styleUrls:  ['scratchpad.component.less'],

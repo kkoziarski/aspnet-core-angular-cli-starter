@@ -7,7 +7,6 @@ import { HeroSearchService } from '../services/hero-search.service';
 import { Hero } from './hero';
 
 @Component({
-  moduleId: module.id,
   selector: 'ngnco-hero-search',
   templateUrl: 'hero-search.component.html',
   styleUrls: ['hero-search.component.less'],

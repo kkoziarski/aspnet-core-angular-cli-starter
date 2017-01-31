@@ -5,7 +5,6 @@ import { Hero }        from './hero';
 import { HeroService } from '../services/hero.service';
 
 @Component({
-  moduleId: module.id,
   selector: 'ngnco-heroes-dashboard',
   templateUrl: 'heroes-dashboard.component.html',
   styleUrls: ['heroes-dashboard.component.less']
