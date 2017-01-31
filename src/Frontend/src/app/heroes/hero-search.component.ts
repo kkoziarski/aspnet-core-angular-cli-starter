@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { Router }            from '@angular/router';
-import { Observable }        from 'rxjs/Observable';
-import { Subject }           from 'rxjs/Subject';
+import { Router } from '@angular/router';
+import { Observable } from 'rxjs/Observable';
+import { Subject } from 'rxjs/Subject';
 
 import { HeroSearchService } from '../services/hero-search.service';
 import { Hero } from './hero';
 
 @Component({
-  selector: 'ngnco-hero-search',
+  selector: 'app-ngnco-hero-search',
   templateUrl: 'hero-search.component.html',
   styleUrls: ['hero-search.component.less'],
   providers: [HeroSearchService]
@@ -35,8 +35,7 @@ export class HeroSearchComponent implements OnInit {
       .switchMap(term => {   // switch to new observable each time
         if (term) {
           return this.heroSearchService.search(term);
-        }
-        else {
+        } else {
           return Observable.of<Hero[]>([]);
         }
       })
@@ -51,7 +50,7 @@ export class HeroSearchComponent implements OnInit {
   }
 
   gotoDetail(hero: Hero): void {
-    let link = ['/heroes', hero.id];
+    const link = ['/heroes', hero.id];
     this.router.navigate(link);
   }
 }

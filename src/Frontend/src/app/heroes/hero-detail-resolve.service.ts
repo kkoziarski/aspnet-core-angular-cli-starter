@@ -9,7 +9,7 @@ export class HeroDetailResolve implements Resolve<Hero> {
     constructor(private heroService: HeroService, private router: Router) { }
 
     resolve(route: ActivatedRouteSnapshot): Promise<Hero> {
-        let id = route.params['id'];
+        const id = route.params['id'];
         return this.heroService
             .getHero(id)
             .then(hero => {

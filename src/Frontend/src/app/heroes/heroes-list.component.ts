@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { Router }            from '@angular/router';
+import { Router } from '@angular/router';
 
-import { Hero }              from './hero';
-import { HeroService }         from '../services/hero.service';
+import { Hero } from './hero';
+import { HeroService } from '../services/hero.service';
 
 @Component({
-  selector: 'ngnco-heroes',
+  selector: 'app-ngnco-heroes',
   templateUrl: 'heroes-list.component.html',
   styleUrls:  ['heroes-list.component.less']
 })

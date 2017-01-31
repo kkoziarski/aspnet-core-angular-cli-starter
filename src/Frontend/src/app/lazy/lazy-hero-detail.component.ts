@@ -5,7 +5,7 @@ import { Hero } from '../heroes/hero';
 import { HeroService } from '../services/hero.service';
 
 @Component({
-  selector: 'ngnco-lazy-hero-detail',
+  selector: 'app-ngnco-lazy-hero-detail',
   template: `
     <h2>Lazy {{hero.name}} details!</h2>
   `,

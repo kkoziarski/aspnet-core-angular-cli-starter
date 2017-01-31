@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-    selector: 'ngnco-about',
+    selector: 'app-ngnco-about',
     templateUrl: 'about.component.html'
 })
 

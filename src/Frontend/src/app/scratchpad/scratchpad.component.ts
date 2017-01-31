@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Router }            from '@angular/router';
+import { Router } from '@angular/router';
 import { DataService } from '../services/dataService';
 
 @Component({
-    selector: 'ngnco-scratchpad',
+    selector: 'app-ngnco-scratchpad',
     templateUrl: 'scratchpad.component.html',
     styleUrls:  ['scratchpad.component.less'],
     providers: [

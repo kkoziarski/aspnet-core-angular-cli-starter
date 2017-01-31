@@ -1,8 +1,8 @@
-import { Injectable }       from '@angular/core';
-import { Http, Response }   from '@angular/http';
-import { Observable }       from 'rxjs';
+import { Injectable } from '@angular/core';
+import { Http, Response } from '@angular/http';
+import { Observable } from 'rxjs/Observable';
 
-import { Hero }             from '../heroes/hero';
+import { Hero } from '../heroes/hero';
 
 @Injectable()
 export class HeroSearchService {

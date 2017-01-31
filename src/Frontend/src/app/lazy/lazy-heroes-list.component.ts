@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { Router }            from '@angular/router';
+import { Router } from '@angular/router';
 
-import { Hero }              from '../heroes/hero';
-import { HeroService }         from '../services/hero.service';
+import { Hero } from '../heroes/hero';
+import { HeroService } from '../services/hero.service';
 
 @Component({
-  selector: 'ngnco-lazy-heroes',
+  selector: 'app-ngnco-lazy-heroes',
   template: `
     <div class="row">
       <div class="col-md-12">

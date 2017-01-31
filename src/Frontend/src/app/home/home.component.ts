@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-    selector: 'ngnco-home',
+    selector: 'app-ngnco-home',
     templateUrl: 'home.component.html'
 })
 

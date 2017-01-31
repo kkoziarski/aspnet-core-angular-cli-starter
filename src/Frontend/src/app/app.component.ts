@@ -1,7 +1,7 @@
-import { Component }          from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
-    selector: 'ngnco-app',
+    selector: 'app-root-ngnco',
     templateUrl: 'app.component.html'
 })
 export class AppComponent {
@@ -9,7 +9,7 @@ export class AppComponent {
     copyYear: number;
 
     constructor() {
-        let today = new Date();
+        const today = new Date();
         this.copyYear = today.getFullYear();
     }
 }

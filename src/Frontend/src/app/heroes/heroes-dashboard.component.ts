@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { Router }            from '@angular/router';
+import { Router } from '@angular/router';
 
-import { Hero }        from './hero';
+import { Hero } from './hero';
 import { HeroService } from '../services/hero.service';
 
 @Component({
-  selector: 'ngnco-heroes-dashboard',
+  selector: 'app-ngnco-heroes-dashboard',
   templateUrl: 'heroes-dashboard.component.html',
   styleUrls: ['heroes-dashboard.component.less']
 })
@@ -23,7 +23,7 @@ export class HeroesDashboardComponent implements OnInit {
   }
 
   gotoDetail(hero: Hero): void {
-    let link = ['/heroes', hero.id];
+    const link = ['/heroes', hero.id];
     this.router.navigate(link);
   }
 }

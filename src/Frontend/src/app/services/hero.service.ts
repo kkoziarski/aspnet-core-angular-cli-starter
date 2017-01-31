@@ -1,4 +1,4 @@
-import { Injectable }    from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Headers, Http } from '@angular/http';
 
 // import { Http, Response, Headers } from '@angular/http';
@@ -27,7 +27,7 @@ export class HeroService {
   }
 
   getHero(id: number): Promise<Hero> {
-    let url = `${this.heroesUrl}/${id}`;
+    const url = `${this.heroesUrl}/${id}`;
     return this.http.get(url)
       .toPromise()
       .then(response => response.json() as Hero)
@@ -35,7 +35,7 @@ export class HeroService {
   }
 
   delete(id: number): Promise<void> {
-    let url = `${this.heroesUrl}/${id}`;
+    const url = `${this.heroesUrl}/${id}`;
     return this.http.delete(url, {headers: this.headers})
       .toPromise()
       .then(() => null)
