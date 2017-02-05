@@ -1,56 +1,88 @@
 {
     "version": "0.1.0",
-    "command": "cmd",
+    //"command": "cmd",
+    // "args": ["/C"],
     "isShellCommand": true,
-    "args": ["/C"],
     "showOutput": "always",
     "suppressTaskName": true,
-    "options": {
-        "cwd": "${workspaceRoot}\\src\\Backend"
-    },
+    // "options": {
+    //     "cwd": "${workspaceRoot}\\src\\Backend"
+    // },
     "tasks": [
         {
             "taskName": "build",
+            "command": "dotnet",
             "args": [
-                "dotnet build", 
+                "build", 
                 "Backend.csproj"
             ],
+             "options": {
+                "cwd": "${workspaceRoot}\\src\\Backend"
+            },
             "isBuildCommand": true,
             "problemMatcher": "$msCompile"
         },
         {
             "taskName": "build dotnet",
-            "isBuildCommand": true,
+            "command": "dotnet",
             "args": [
-                "dotnet build", 
+                "build", 
                 "Backend.csproj"
             ],
+            "options": {
+                "cwd": "${workspaceRoot}\\src\\Backend"
+            },
+            "isBuildCommand": true,
             "problemMatcher": "$msCompile"
         },
         {
             "taskName": "start dotnet",
-            "isBuildCommand": true,
+            "command": "dotnet",
             "args": [
-                "dotnet run"
+                "run"
             ],
+            "options": {
+                "cwd": "${workspaceRoot}\\src\\Backend"
+            },
+            "isBuildCommand": true,
             "problemMatcher": "$msCompile"
         },
         {
             "taskName": "start dotnet watcher",
-            "isBuildCommand": true,
+            "command": "dotnet",
             "args": [
-                "dotnet watch run"
+                "watch",
+                "run"
             ],
+            "options": {
+                "cwd": "${workspaceRoot}\\src\\Backend"
+            },
+            "isShellCommand": true,
             "problemMatcher": "$msCompile"
         },
         {
             "taskName": "restore",
-            "isBuildCommand": true,
+            "command": "dotnet",
             "args": [
-                "dotnet restore", 
+                "restore", 
                 "Backend.csproj"
             ],
+            "options": {
+                "cwd": "${workspaceRoot}\\src\\Backend"
+            },
+            "isShellCommand": true,
             "problemMatcher": "$msCompile"
+        },
+        {
+            "taskName": "ng-start",
+            "command": "npm",
+            "args": [
+                "start"
+            ],
+            "isShellCommand": true,
+            "options": {
+                "cwd": "${workspaceRoot}\\src\\Frontend"
+            }
         }
     ]
 }
