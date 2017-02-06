@@ -7,8 +7,8 @@ describe('aspnet-core-angular-cli-starter App', function() {
     page = new AspnetCoreAngularCliStarterPage();
   });
 
-  it('should display message saying app works', () => {
+  it('should display message saying Hello from AppComponent', () => {
     page.navigateTo();
-    expect(page.getParagraphText()).toEqual('app works!');
+    expect(page.getParagraphText()).toEqual('Hello from AppComponent');
   });
 });

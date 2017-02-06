@@ -6,6 +6,6 @@ export class AspnetCoreAngularCliStarterPage {
   }
 
   getParagraphText() {
-    return element(by.css('app-root h1')).getText();
+    return element(by.css('app-root-ngnco .starter-template h1')).getText();
   }
 }
