@@ -11,6 +11,7 @@ This project was generated with [angular-cli](https://github.com/angular/angular
 * `> npm install -g npm`
 * `> npm install -g typescript`
 * `> npm install -g angular-cli` [angular-cli](https://github.com/angular/angular-cli)
+* Install [.NET Core 1.1 runtime/SDK](https://www.microsoft.com/net/download/core/#/runtime/current)
 
 ### Optional packages:
 * `> npm install -g typings`
@@ -23,6 +24,7 @@ This project was generated with [angular-cli](https://github.com/angular/angular
 # Development
 ## Steps during development
 * `cd .\src\Frontend` __`> npm start`__ which starts __`ng serve`__
+* `cd .\src\Backend` run command `> dotnet restore` only first time after clone
 * `cd .\src\Backend` __`> dotnet watch run`__ or `> dotnet run`
 * Navigate to [http://localhost:4200/](http://localhost:4200/) - this is the _Frontend_ URL created by __`ng serve`__ 
 which is configured in `proxy.conf.json` to pass all the API requests to the running ASP.NET Core application on port __:5002__.
