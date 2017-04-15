@@ -16,6 +16,6 @@ describe('aspnet-core-angular-cli-starter App', function() {
 
   it('should redirect to root for incorrect URL', () => {
     browser.get('/non-existing-page-url');
-    expect(browser.getCurrentUrl()).toEqual(browser.baseUrl);
+    expect(browser.getCurrentUrl()).toEqual(browser.baseUrl + '/');
   });
 });
