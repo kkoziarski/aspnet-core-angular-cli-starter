@@ -1,24 +1,26 @@
 import { Injectable } from '@angular/core';
 import { Router, Resolve, ActivatedRouteSnapshot } from '@angular/router';
+import { Observable } from 'rxjs/Observable';
 
 import { Hero } from '../heroes/hero';
 import { HeroService } from '../services/hero.service';
 
 @Injectable()
-export class LazyHeroDetailResolve implements Resolve<Hero> {
+export class LazyHeroDetailResolve implements Resolve<any> {
     constructor(private heroService: HeroService, private router: Router) { }
 
-    resolve(route: ActivatedRouteSnapshot): Promise<Hero> {
+    resolve(route: ActivatedRouteSnapshot): Observable<any> | boolean {
         const id = route.params['id'];
         return this.heroService
             .getHero(id)
-            .then(hero => {
-                if (hero) {
+            .map(hero => {
+                if (hero && hero.id) {
                     return hero;
                 } else { // id not found
                     this.router.navigate(['/lazy-heroes']);
-                    return null;
+                    return false;
                 }
-            });
+            })
+            .first();
     }
 }

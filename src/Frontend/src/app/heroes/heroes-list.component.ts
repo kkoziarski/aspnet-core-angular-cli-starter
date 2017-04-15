@@ -20,26 +20,30 @@ export class HeroesListComponent implements OnInit {
   getHeroes(): void {
     this.heroService
         .getHeroes()
-        .then(heroes => this.heroes = heroes);
+        .subscribe(heroes => this.heroes = heroes,
+        error => console.log(error));
   }
 
   add(name: string): void {
     name = name.trim();
     if (!name) { return; }
+
     this.heroService.create(name)
-      .then(hero => {
+      .subscribe(hero => {
         this.heroes.push(hero);
         this.selectedHero = null;
-      });
+      },
+      error => console.log(error));
   }
 
   delete(hero: Hero): void {
     this.heroService
         .delete(hero.id)
-        .then(() => {
+        .subscribe(() => {
           this.heroes = this.heroes.filter(h => h !== hero);
           if (this.selectedHero === hero) { this.selectedHero = null; }
-        });
+        },
+        error => console.log(error));
   }
 
   ngOnInit(): void {

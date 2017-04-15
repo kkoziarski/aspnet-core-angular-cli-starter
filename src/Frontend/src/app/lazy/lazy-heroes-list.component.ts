@@ -32,7 +32,9 @@ export class LazyHeroesListComponent implements OnInit {
   getHeroes(): void {
     this.heroService
         .getHeroes()
-        .then(heroes => this.heroes = heroes);
+        .subscribe(
+          heroes => this.heroes = heroes,
+          error => console.log(error));
   }
 
   ngOnInit(): void {
