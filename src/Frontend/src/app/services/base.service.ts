@@ -4,7 +4,6 @@ import { Observable } from 'rxjs/Observable';
 export class BaseService {
 
     protected extractData<TType>(res: Response) : TType {
-        console.log("ExtractData", res);
         let responseBody = res.json();
         return (responseBody || {}) as TType;
     }
