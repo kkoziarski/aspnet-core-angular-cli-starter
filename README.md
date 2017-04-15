@@ -10,7 +10,7 @@ This project was generated with [angular-cli](https://github.com/angular/angular
     * Verify that you are running at least node **v5.x.x** and npm **3.x.x** by running `node -v` and `npm -v`
 * `> npm install -g npm`
 * `> npm install -g typescript`
-* `> npm install -g angular-cli` [angular-cli](https://github.com/angular/angular-cli)
+* `> npm install -g @angular/cli` [angular-cli](https://github.com/angular/angular-cli)
 * Install [.NET Core 1.1 runtime/SDK](https://www.microsoft.com/net/download/core/#/runtime/current)
 
 ### Optional packages:
