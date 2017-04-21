@@ -69,6 +69,8 @@
                     && !context.Request.Path.Value.StartsWith("/libs/"))
                 {
                     context.Request.Path = "/index.html";
+                    context.Response.StatusCode = 200;
+
                     await next();
                 }
             });
