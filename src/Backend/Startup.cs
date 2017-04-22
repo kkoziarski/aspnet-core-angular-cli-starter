@@ -61,24 +61,33 @@
             // support the Routing of Angular2. If the Browser calls a URL which doesn't exists on the server, it could be a Angular route. Especially if the URL doesn't contain a file extension.
             app.Use(async (context, next) =>
             {
-                await next();
+               await next();
 
                 if (context.Response.StatusCode == 404
                     && !Path.HasExtension(context.Request.Path.Value)
                     && !context.Request.Path.Value.StartsWith("/api/")
                     && !context.Request.Path.Value.StartsWith("/libs/"))
                 {
-                    context.Request.Path = "/index.html";
+                    context.Request.Path = "/index.html";          // context.Request.Path = new Microsoft.AspNetCore.Http.PathString("/");
                     context.Response.StatusCode = 200;
-
+                    
                     await next();
                 }
             });
 
             app.UseDefaultFiles();
-            app.UseStaticFiles();
+
+            // app.UseStaticFiles();
+            app.UseStaticFiles(new StaticFileOptions
+                {
+                    OnPrepareResponse = context =>
+                    {
+                        context.Context.Response.Headers.Remove("Content-Length");
+                    }
+                });
 
             app.UseMvc();
+
             //app.UseMvc(routes =>
             //{
             //    routes.MapRoute(
