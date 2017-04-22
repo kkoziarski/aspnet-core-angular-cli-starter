@@ -1,9 +1,14 @@
 ﻿namespace AspNetCoreAngularCli
 {
+    using System.Collections.Generic;
     using System.IO;
 
+    using AspNetCoreAngularCli.Auth;
     using AspNetCoreAngularCli.Backend.Data;
     using AspNetCoreAngularCli.Backend.Models;
+
+    using IdentityServer4.Models;
+    using IdentityServer4.Test;
 
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
@@ -11,6 +16,8 @@
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Logging;
+
+    using Resources = IdentityServer4.Models.Resources;
 
     public class Startup
     {
@@ -43,6 +50,13 @@
                         Duration = 0
                     });
                 });
+            
+            services.AddIdentityServer()
+                .AddInMemoryClients(Clients.Get())
+                .AddInMemoryIdentityResources(Auth.Resources.GetIdentityResources())
+                .AddInMemoryApiResources(Auth.Resources.GetApiResources())
+                .AddTestUsers(Users.Get())
+                .AddTemporarySigningCredential();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -96,6 +110,8 @@
             //});
 
             DbInitializer.Initialize(dbContext);
+
+            app.UseIdentityServer();
         }
     }
 }
