@@ -93,14 +93,14 @@
 
             // app.UseStaticFiles();
             app.UseStaticFiles(new StaticFileOptions
+            {
+                OnPrepareResponse = context =>
                 {
-                    OnPrepareResponse = context =>
-                    {
-                        context.Context.Response.Headers.Remove("Content-Length");
-                    }
-                });
+                    context.Context.Response.Headers.Remove("Content-Length");
+                }
+            });
 
-            app.UseMvc();
+            app.UseMvcWithDefaultRoute();
 
             //app.UseMvc(routes =>
             //{
