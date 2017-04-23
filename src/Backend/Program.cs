@@ -18,15 +18,14 @@
 
             var config = new ConfigurationBuilder()
                  .SetBasePath(Directory.GetCurrentDirectory())
-                 .AddJsonFile("appsettings.json")
+                //  .AddJsonFile("appsettings.json")
                  .AddJsonFile("hosting.json", optional: true)
                  .AddCommandLine(args)
                  .AddEnvironmentVariables(prefix: "ASPNETCORE_")
                  .Build();
 
-            var appOptions = config.GetSection("App").Get<AppOptions>();
-
-            System.Console.WriteLine($"Option1: {appOptions.Option1}");
+            // var appOptions = config.GetSection("App").Get<AppOptions>();
+            // System.Console.WriteLine($"Option1: {appOptions.Option1}");
 
             var host = new WebHostBuilder()
                 .UseUrls("http://*:5002") // "https://*:5321", "http://0.0.0.0:5000")

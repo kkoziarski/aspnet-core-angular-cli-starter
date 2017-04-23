@@ -16,15 +16,30 @@
 
     public class Startup
     {
+        private readonly IHostingEnvironment environment;
         public IConfigurationRoot Configuration { get; }
+
 
         public Startup(IHostingEnvironment env)
         {
+            this.environment = env;
+
             var builder = new ConfigurationBuilder()
                 .SetBasePath(env.ContentRootPath)
                 .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
-                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
-                .AddEnvironmentVariables();
+                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true);
+            
+            if (env.IsDevelopment())
+            {
+                // dotnet user-secrets -h
+                // SET VALUE: dotnet user-secrets set MySecret ValueOfMySecret
+                // LIST VALUES: dotnet user-secrets list
+                // %APPDATA%\microsoft\UserSecrets\<userSecretsId>\secrets.json
+                builder.AddUserSecrets<Startup>();
+            }
+
+            builder.AddEnvironmentVariables();
+                
             this.Configuration = builder.Build();
         }
 
@@ -47,6 +62,11 @@
                 });
             // Configure using a sub-section of the appsettings.json file.
             services.Configure<AppOptions>(this.Configuration.GetSection("App"));
+
+
+            // SET VALUE: dotnet user-secrets set MySecret ValueOfMySecret
+            // LIST VALUES: dotnet user-secrets list
+            System.Console.WriteLine($"UserSecret value: {Configuration["MySecret"]}");
 
             services.AddIdentityServer()
                 .AddInMemoryClients(Clients.Get())
