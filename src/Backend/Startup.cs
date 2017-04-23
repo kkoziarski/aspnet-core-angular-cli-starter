@@ -1,14 +1,11 @@
 ﻿namespace AspNetCoreAngularCli
 {
-    using System.Collections.Generic;
     using System.IO;
 
     using AspNetCoreAngularCli.Auth;
     using AspNetCoreAngularCli.Backend.Data;
     using AspNetCoreAngularCli.Backend.Models;
-
-    using IdentityServer4.Models;
-    using IdentityServer4.Test;
+    using AspNetCoreAngularCli.Options;
 
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
@@ -16,8 +13,6 @@
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Logging;
-
-    using Resources = IdentityServer4.Models.Resources;
 
     public class Startup
     {
@@ -38,7 +33,7 @@
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+                options.UseSqlServer(this.Configuration.GetConnectionString("DefaultConnection")));
 
             // Add framework services.
             services.AddMvc()
@@ -50,7 +45,9 @@
                         Duration = 0
                     });
                 });
-            
+            // Configure using a sub-section of the appsettings.json file.
+            services.Configure<AppOptions>(this.Configuration.GetSection("App"));
+
             services.AddIdentityServer()
                 .AddInMemoryClients(Clients.Get())
                 .AddInMemoryIdentityResources(Auth.Resources.GetIdentityResources())
@@ -62,7 +59,7 @@
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory, ApplicationDbContext dbContext)
         {
-            loggerFactory.AddConsole(Configuration.GetSection("Logging"));
+            loggerFactory.AddConsole(this.Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
 
 
