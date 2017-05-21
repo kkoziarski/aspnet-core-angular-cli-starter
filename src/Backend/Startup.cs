@@ -1,6 +1,8 @@
 ﻿namespace AspNetCoreAngularCli
 {
+    using System;
     using System.IO;
+    using System.Linq;
 
     using AspNetCoreAngularCli.Auth;
     using AspNetCoreAngularCli.Backend.Data;
@@ -66,7 +68,7 @@
 
             // SET VALUE: dotnet user-secrets set MySecret ValueOfMySecret
             // LIST VALUES: dotnet user-secrets list
-            System.Console.WriteLine($"UserSecret value: {Configuration["MySecret"]}");
+            System.Console.WriteLine($"UserSecret value: {this.Configuration["MySecret"]}");
 
             services.AddIdentityServer()
                 .AddInMemoryClients(Clients.Get())
@@ -92,14 +94,27 @@
             // support the Routing of Angular2. If the Browser calls a URL which doesn't exists on the server, it could be a Angular route. Especially if the URL doesn't contain a file extension.
             app.Use(async (context, next) =>
             {
-               await next();
+                await next();
+
+                var angularRoutes = new[] {
+                    "/api/",
+                    "/forbidden",
+                    "/authorized",
+                    "/authorize",
+                    "/unauthorized",
+                    "/logoff"
+                };
+
+                var requestPath = context.Request.Path;
 
                 if (context.Response.StatusCode == 404
-                    && !Path.HasExtension(context.Request.Path.Value)
-                    && !context.Request.Path.Value.StartsWith("/api/")
-                    && !context.Request.Path.Value.StartsWith("/libs/"))
+                    && requestPath.HasValue
+                    && Path.HasExtension(requestPath.Value) == false
+                    && angularRoutes.Any((ar) => requestPath.Value.StartsWith(ar, StringComparison.OrdinalIgnoreCase)) == false
+                    && requestPath.Value.StartsWith("/api/", StringComparison.OrdinalIgnoreCase) == false)
                 {
-                    context.Request.Path = "/index.html";          // context.Request.Path = new Microsoft.AspNetCore.Http.PathString("/");
+                    context.Request.Path = context.Request.Path = new Microsoft.AspNetCore.Http.PathString("/");
+//                    context.Request.Path = "/index.html";
                     context.Response.StatusCode = 200;
                     
                     await next();
