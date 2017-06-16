@@ -15,7 +15,7 @@
             {
                 new TestUser
                 {
-                    SubjectId = "F687BB68-034A-464A-9ED1-61254BE03D02",
+                    SubjectId = "4E8300BE-4728-4DC0-9E53-25EC6B650438",
                     Username = "kris",
                     Password = "password",
                     Claims = new List<Claim>

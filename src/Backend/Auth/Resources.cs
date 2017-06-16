@@ -17,7 +17,19 @@
                 {
                     Name = "role",
                     UserClaims = new List<string> {"role"}
-                }
+                },
+                new IdentityResource
+                {
+                    Name = "dataeventrecordsscope",
+                    UserClaims = new[] {
+                        "role",
+                        "admin",
+                        "user",
+                        "dataEventRecords",
+                        "dataEventRecords.admin",
+                        "dataEventRecords.user"
+                    }
+                } 
             };
         }
 
@@ -30,12 +42,36 @@
                     Name = "customAPI",
                     DisplayName = "Custom API",
                     Description = "Custom API Access",
-                    UserClaims = new List<string> {"role"},
-                    ApiSecrets = new List<Secret> {new Secret("scopeSecret".Sha256())},
+                    UserClaims = new List<string> { "role" },
+                    ApiSecrets = new List<Secret> { new Secret("scopeSecret".Sha256())},
                     Scopes = new List<Scope>
                     {
                         new Scope("customAPI.read"),
                         new Scope("customAPI.write")
+                    }
+                },
+                new ApiResource("dataEventRecords")
+                {
+                    ApiSecrets = new List<Secret>
+                    {
+                        new Secret("dataEventRecordsSecret".Sha256())
+                    },
+                    Scopes = new List<Scope>
+                    {
+                        new Scope
+                        {
+                            Name = "dataeventrecordsscope",
+                            DisplayName = "Scope for the dataEventRecords ApiResource"
+                        }
+                    },
+                    UserClaims = new List<string>
+                    {
+                        "role",
+                        "admin",
+                        "user",
+                        "dataEventRecords",
+                        "dataEventRecords.admin",
+                        "dataEventRecords.user"
                     }
                 }
             };
