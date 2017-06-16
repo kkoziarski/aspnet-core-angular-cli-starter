@@ -5,7 +5,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve --proxy-config proxy.conf.json",
-    "build": "ng build",
+    "build": "ng build --env=devbuild",
     "test": "ng test",
     "lint": "ng lint",
     "lintx": "tslint --config tslint.json \"src/**/*.ts\" --project src/tsconfig.json  && tslint --config tslint.json \"e2e/**/*.ts\" --project e2e/tsconfig.json",
