@@ -1,5 +1,6 @@
 ﻿namespace AspNetCoreAngularCli
 {
+    using System;
     using System.IO;
     using AspNetCoreAngularCli.Options;
     using Microsoft.AspNetCore.Hosting;
@@ -9,6 +10,7 @@
     {
         public static void Main(string[] args)
         {
+            Console.Title = "Backend-AspNetCoreAngularCli";
             /*
             hosting.json
             {

@@ -181,7 +181,6 @@
 
         private static void SetupAuthorizationPolicies(IServiceCollection services)
         {
-
             var guestPolicy = new AuthorizationPolicyBuilder()
                 .RequireAuthenticatedUser()
                 .RequireClaim("scope", "dataEventRecords")
@@ -189,15 +188,11 @@
 
             services.AddAuthorization(
                 options =>
-                    {
-                        options.AddPolicy(
-                            "dataEventRecordsAdmin",
-                            policyAdmin => { policyAdmin.RequireClaim("role", "dataEventRecords.admin"); });
-                        options.AddPolicy("admin", policyAdmin => { policyAdmin.RequireClaim("role", "admin"); });
-                        options.AddPolicy(
-                            "dataEventRecordsUser",
-                            policyUser => { policyUser.RequireClaim("role", "dataEventRecords.user"); });
-                    });
+                {
+                    options.AddPolicy("dataEventRecordsAdmin", policyAdmin => { policyAdmin.RequireClaim("role", "dataEventRecords.admin"); });
+                    options.AddPolicy("admin", policyAdmin => { policyAdmin.RequireClaim("role", "admin"); });
+                    options.AddPolicy("dataEventRecordsUser", policyUser => { policyUser.RequireClaim("role", "dataEventRecords.user"); });
+                });
         }
     }
 }
