@@ -74,17 +74,16 @@
                         Duration = 0
                     });
                 });
+
             // Configure using a sub-section of the appsettings.json file.
             services.Configure<AppOptions>(this.Configuration.GetSection("App"));
-
 
             // SET VALUE: dotnet user-secrets set MySecret ValueOfMySecret
             // LIST VALUES: dotnet user-secrets list
             System.Console.WriteLine($"UserSecret value: {this.Configuration["MySecret"]}");
 
-            //            var cert = new X509Certificate2(Path.Combine(this.environment.ContentRootPath, "KrhoDevCert.pfx"), "");
             services.AddIdentityServer()
-//                .AddSigningCredential(cert)
+                .AddSigningCredential(cert)
                 .AddInMemoryClients(Clients.Get())
                 .AddInMemoryIdentityResources(Auth.Resources.GetIdentityResources())
                 .AddInMemoryApiResources(Auth.Resources.GetApiResources())
@@ -97,7 +96,6 @@
         {
             loggerFactory.AddConsole(this.Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
-
 
             if (env.IsDevelopment())
             {
