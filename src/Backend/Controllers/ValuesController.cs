@@ -4,9 +4,11 @@
 
     using AspNetCoreAngularCli.Options;
 
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Options;
 
+    // [Authorize]
     [Route("api/[controller]")]
     public class ValuesController : Controller
     {

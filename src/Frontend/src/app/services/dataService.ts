@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Http, Response, Headers } from '@angular/http';
+import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { Configuration } from '../app.constants';
+import { OidcSecurityService } from '../auth/services/oidc.security.service';
 
 import 'rxjs/add/operator/map';
 
@@ -13,7 +14,7 @@ export class DataService extends BaseService {
     private actionUrl: string;
     private headers: Headers;
 
-    constructor(private _http: Http, private _configuration: Configuration) {
+    constructor(private _http: Http, private _configuration: Configuration, private _securityService: OidcSecurityService) {
         super();
 
         this.actionUrl = _configuration.ServerWithApiUrl + 'values/';
@@ -23,9 +24,28 @@ export class DataService extends BaseService {
         this.headers.append('Accept', 'application/json');
     }
 
+
+    private setHeaders() {
+
+        console.log('setHeaders started');
+
+        this.headers = new Headers();
+        this.headers.append('Content-Type', 'application/json');
+        this.headers.append('Accept', 'application/json');
+
+        let token = this._securityService.GetToken();
+        if (token && token !== '') {
+            let tokenValue = 'Bearer ' + token;
+            console.log('tokenValue:' + tokenValue);
+            this.headers.append('Authorization', tokenValue);
+        }
+    }   
+
     public GetAll = (): Observable<any> => {
+        // this.setHeaders();        
+        let options = new RequestOptions({ headers: this.headers, body: '' });
         return this._http
-            .get(this.actionUrl)
+            .get(this.actionUrl, options)
             .map(this.extractData)
             .catch(this.handleError);
     }

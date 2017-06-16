@@ -115,6 +115,7 @@ export class OidcSecurityService {
         this.store('authNonce', nonce);
         console.log('AuthorizedController created. adding myautostate: ' + this.retrieve('authStateControl'));
 
+        // http://localhost:5002/connect/authorize?response_type=id_token%20token&client_id=angularclient&redirect_uri=http://localhost:5002&scope=dataEventRecords%20securedFiles%20openid&nonce=323232&state=2323232
         let url =
             authorizationUrl + '?' +
             'response_type=' + encodeURI(response_type) + '&' +
@@ -299,7 +300,7 @@ export class OidcSecurityService {
 
         let token = this.GetToken();
 
-        if (token !== '') {
+        if (token !== '' && token !== undefined) { // if (token !== '') {
             this.headers.append('Authorization', 'Bearer ' + token);
         }
     }
