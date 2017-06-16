@@ -30,6 +30,8 @@
       "environmentSource": "environments/environment.ts",
       "environments": {
         "dev": "environments/environment.ts",
+        "debug": "environments/environment.debug.ts",
+        "devbuild": "environments/environment.devbuild.ts",
         "prod": "environments/environment.prod.ts"
       }
     }
