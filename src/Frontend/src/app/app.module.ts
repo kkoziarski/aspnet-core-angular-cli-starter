@@ -14,8 +14,6 @@ import { HeroesModule } from './heroes/heroes.module';
 import { ScratchpadComponent } from './scratchpad/scratchpad.component';
 import { DataService } from './services/dataService';
 import { Configuration } from './app.constants';
-import { OidcSecurityService } from './auth/services/oidc.security.service';
-import { AuthModule } from './auth/auth.module';
 
 import { AppRoutingModule } from './app-routing.module';
 
@@ -25,8 +23,7 @@ import { AppRoutingModule } from './app-routing.module';
         FormsModule,
         HttpModule,
         AppRoutingModule,
-        HeroesModule,
-        AuthModule.forRoot()
+        HeroesModule
     ],
     declarations: [
         AppComponent,
