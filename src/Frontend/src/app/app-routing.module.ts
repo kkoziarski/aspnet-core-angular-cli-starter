@@ -4,6 +4,11 @@ import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
 import { ScratchpadComponent } from './scratchpad/scratchpad.component';
+import { AuthCallbackComponent } from './auth-callback/auth-callback.component';
+import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
+
+import { AuthService } from './services/auth.service';
+import { AuthenticationGuard } from './services/authentication.guard';
 
 const appRoutes: Routes = [
   {
@@ -21,6 +26,14 @@ const appRoutes: Routes = [
   {
     path: 'lazy-heroes',
     loadChildren: 'app/lazy/lazy-heroes.module#LazyHeroesModule'
+  },
+  {
+    path: 'auth-callback',
+    component: AuthCallbackComponent
+  },
+  {
+    path: 'unauthorized',
+    component: UnauthorizedComponent
   },
 ];
 
