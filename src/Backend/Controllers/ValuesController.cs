@@ -18,6 +18,7 @@
         {
             this.appOptions = appOptions.Value;
         }
+        
         // GET api/values
         [HttpGet]
         public IEnumerable<string> Get()
