@@ -17,6 +17,7 @@
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Logging;
+    using Microsoft.IdentityModel.Tokens;
 
     public class Startup
     {
@@ -81,13 +82,22 @@
         {
             loggerFactory.AddConsole(this.Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
+            var logger = loggerFactory.CreateLogger("default");
+            
+            app.UseCors(builder =>
+                builder.AllowAnyOrigin()
+                    .AllowAnyHeader()
+                    .AllowAnyMethod()
+            );
+
+            this.ConfigureAuthentication(app, logger);
 
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
                 app.UseBrowserLink();
             }
-            
+
             // support the Routing of Angular2. If the Browser calls a URL which doesn't exists on the server, it could be a Angular route. Especially if the URL doesn't contain a file extension.
             app.Use(async (context, next) =>
             {
@@ -132,6 +142,29 @@
             DbInitializer.Initialize(dbContext);
 
             //app.UseIdentity();
+        }
+
+        private void ConfigureAuthentication(IApplicationBuilder app, ILogger logger)
+        {
+            string audience = this.Configuration["MicrosoftIdentity:ClientId"];
+            if (audience == "YOUR CLIENT ID")
+            {
+                logger.LogError("Your appsettings.json has not been updated with the client id (app id) of your application");
+                Environment.Exit(1);
+            }
+
+            var tokenValidationParameters = new TokenValidationParameters();
+            tokenValidationParameters.ValidateIssuer = false;
+
+            var options = new JwtBearerOptions
+                              {
+                                  Audience = this.Configuration["MicrosoftIdentity:ClientId"],
+                                  Authority = this.Configuration["MicrosoftIdentity:Authority"], // https://login.microsoftonline.com/{tenantId}
+                                  TokenValidationParameters = tokenValidationParameters,
+                                  //RequireHttpsMetadata = false
+                              };
+
+            app.UseJwtBearerAuthentication(options);
         }
     }
 }
