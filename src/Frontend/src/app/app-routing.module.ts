@@ -6,6 +6,7 @@ import { AboutComponent } from './about/about.component';
 import { ScratchpadComponent } from './scratchpad/scratchpad.component';
 import { AuthCallbackComponent } from './auth-callback/auth-callback.component';
 import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
+import { RestrictedComponent } from './restricted/restricted.component';
 
 import { AuthService } from './services/auth.service';
 import { AuthenticationGuard } from './services/authentication.guard';
@@ -34,6 +35,11 @@ const appRoutes: Routes = [
   {
     path: 'unauthorized',
     component: UnauthorizedComponent
+  },
+  {
+    path: 'restricted',
+    component: RestrictedComponent,
+    canActivate: [ AuthenticationGuard ]
   },
 ];
 

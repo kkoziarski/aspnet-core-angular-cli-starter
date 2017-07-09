@@ -16,8 +16,9 @@ import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
 import { AuthCallbackComponent } from './auth-callback/auth-callback.component';
 import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
-
 import { ScratchpadComponent } from './scratchpad/scratchpad.component';
+import { RestrictedComponent } from './restricted/restricted.component';
+
 import { DataService } from './services/dataService';
 import { Configuration } from './app.constants';
 
@@ -38,7 +39,8 @@ import { AppRoutingModule } from './app-routing.module';
         AboutComponent,
         ScratchpadComponent,
         AuthCallbackComponent,
-        UnauthorizedComponent
+        UnauthorizedComponent,
+        RestrictedComponent
     ],
     providers: [
         DataService,

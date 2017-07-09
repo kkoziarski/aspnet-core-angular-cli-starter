@@ -27,5 +27,6 @@ export class AppComponent {
 
     public logIn() {
         this.adalService.login();
+        return false;
     }
 }

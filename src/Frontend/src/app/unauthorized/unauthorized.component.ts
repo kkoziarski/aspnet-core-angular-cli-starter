@@ -18,10 +18,6 @@ export class UnauthorizedComponent implements OnInit {
     ngOnInit(): void {
     }
 
-    public logIn() {
-        this.adalService.login();
-    }
-    
     goback() {
         this.location.back();
     }
