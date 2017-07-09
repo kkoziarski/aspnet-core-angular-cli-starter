@@ -1,34 +1,27 @@
 ﻿namespace AspNetCoreAngularCli.Backend.Controllers
 {
+    using System;
+
+    using Microsoft.AspNetCore.Authorization;
     using System.Collections.Generic;
-
-    using AspNetCoreAngularCli.Options;
-
     using Microsoft.AspNetCore.Mvc;
-    using Microsoft.Extensions.Options;
 
+    [Authorize]
     [Route("api/[controller]")]
-    public class ValuesController : Controller
+    public class SecretsController : Controller
     {
-        private readonly AppOptions appOptions;
-
-        public ValuesController(IOptions<AppOptions> appOptions)
-        {
-            this.appOptions = appOptions.Value;
-        }
-        
         // GET api/values
         [HttpGet]
         public IEnumerable<string> Get()
         {
-            return new string[] { "value1", "value2", this.appOptions.Option1, this.appOptions.Option2.ToString() };
+            return new string[] { "secret value1", "secret value2", "secret " + DateTime.Now };
         }
 
         // GET api/values/5
         [HttpGet("{id}")]
         public string Get(int id)
         {
-            return "value";
+            return "secret value" + DateTime.Now;
         }
 
         // POST api/values
