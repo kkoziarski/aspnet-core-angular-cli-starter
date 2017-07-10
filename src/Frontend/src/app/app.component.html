@@ -26,8 +26,13 @@
                 </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li *ngIf="_user && isLoggedIn; else notLoggedUser;">
-                    <a>{{_user.profile.name}}</a>
+                <li *ngIf="_user && isLoggedIn; else notLoggedUser;" class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                        {{_user.profile.name}} <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a (click)="logOut()" href="#">Logout</a></li>
+                    </ul>
                 </li>
                 <ng-template #notLoggedUser>
                     <li><a (click)="logIn()" href="#">Login</a></li>

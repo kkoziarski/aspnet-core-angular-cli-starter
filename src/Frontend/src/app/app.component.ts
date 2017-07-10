@@ -10,7 +10,7 @@ import { AuthService } from './services/auth.service';
     selector: 'app-root-ngnco',
     templateUrl: 'app.component.html'
 })
-export class AppComponent  implements OnInit{
+export class AppComponent implements OnInit {
     title = 'Hello from AppComponent';
     copyYear: number;
     _user: any;
@@ -31,17 +31,22 @@ export class AppComponent  implements OnInit{
         this.adalService.handleWindowCallback();
     }
 
-  ngOnInit() {
-    this.authService.userLoadededEvent
-      .subscribe(user => {
-        this._user = user;
-        this.isLoggedIn = this.authService.loggedIn;
-      });
-    this.authService.getUser();
-  }
+    ngOnInit() {
+        this.authService.userLoadededEvent
+            .subscribe(user => {
+                this._user = user;
+                this.isLoggedIn = this.authService.loggedIn;
+            });
+        this.authService.getUser();
+    }
 
     public logIn() {
         this.adalService.login();
+        return false;
+    }
+    
+    public logOut() {
+        this.adalService.logOut();
         return false;
     }
 }
