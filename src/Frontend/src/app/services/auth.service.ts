@@ -4,7 +4,7 @@ import { Observable } from 'rxjs/Rx';
 
 import { AdalService, OAuthData, AuthHttp } from 'ng2-adal/core';
 import * as adalLib from 'adal-angular';
-import User = adal.User;
+import User = adalLib.User;
 import { AdalConfigService } from './adal-config.service';
 
 
@@ -12,9 +12,9 @@ import { environment } from '../../environments/environment';
 
 @Injectable()
 export class AuthService {
-  userLoadededEvent: EventEmitter<User> = new EventEmitter<User>();
-  currentUser: User;
-  loggedIn = false;
+  public userLoadededEvent: EventEmitter<User> = new EventEmitter<User>();
+  public currentUser: User;
+  public loggedIn = false;
 
   private authHeaders: Headers;
   private tokenResource: string;
@@ -25,6 +25,7 @@ export class AuthService {
     private authHttp: AuthHttp,
     private adalService: AdalService) {
       this.tokenResource = this.adalConfigService.adalConfig.clientId;
+      //this.getUser();
   }
 
   clearCache() {
@@ -36,13 +37,20 @@ export class AuthService {
     this.adalService
       .getUser()
       .subscribe(user => {
-        console.log('got user', user);
+        if(user){
+          console.log('got user', user);
+          this.loggedIn = true;
+          this.currentUser = user;
+        } else {
+          this.loggedIn = false;
+        }
         this.currentUser = user;
         this.userLoadededEvent.emit(user);
       },
       error => {
         //console.log(error)
         console.log('getUser error');
+        this.loggedIn = false;
       },
       () => console.log('getUser complete'));
   }

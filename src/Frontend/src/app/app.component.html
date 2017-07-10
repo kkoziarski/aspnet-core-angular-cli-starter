@@ -26,7 +26,12 @@
                 </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a (click)="logIn()" href="#">Login</a></li>
+                <li *ngIf="_user && isLoggedIn; else notLoggedUser;">
+                    <a>{{_user.profile.name}}</a>
+                </li>
+                <ng-template #notLoggedUser>
+                    <li><a (click)="logIn()" href="#">Login</a></li>
+                </ng-template>
             </ul>
         </div>
         <!--/.nav-collapse -->
