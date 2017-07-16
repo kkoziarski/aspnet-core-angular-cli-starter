@@ -2,17 +2,31 @@
 
 import { TestBed, async } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
+import { MockBackend } from '@angular/http/testing';
+import { HttpModule, Http, Response, ResponseOptions, XHRBackend } from '@angular/http';
+
+import { AdalService, OAuthData, AuthHttp } from 'ng2-adal/core';
+import { AdalConfigService } from './services/adal-config.service';
+import { AuthService } from './services/auth.service';
+
 import { AppComponent } from './app.component';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        RouterTestingModule
+        RouterTestingModule,
+        HttpModule
       ],
       declarations: [
         AppComponent
       ],
+      providers: [
+        AuthService,
+        AdalConfigService,
+        AdalService,
+        AuthHttp
+      ]
     }).compileComponents();
   }));
 
