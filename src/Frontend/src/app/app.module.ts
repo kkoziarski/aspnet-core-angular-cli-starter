@@ -19,7 +19,7 @@ import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
 import { ScratchpadComponent } from './scratchpad/scratchpad.component';
 import { RestrictedComponent } from './restricted/restricted.component';
 
-import { DataService } from './services/dataService';
+import { ValuesService } from './services/values.service';
 import { Configuration } from './app.constants';
 
 import { HeroesModule } from './heroes/heroes.module';
@@ -43,7 +43,7 @@ import { AppRoutingModule } from './app-routing.module';
         RestrictedComponent
     ],
     providers: [
-        DataService,
+        ValuesService,
         Configuration,
         AuthService,
         AdalConfigService,

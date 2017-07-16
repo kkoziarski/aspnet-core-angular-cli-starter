@@ -8,7 +8,7 @@ import 'rxjs/add/operator/map';
 import { BaseService } from "./base.service";
 
 @Injectable()
-export class DataService extends BaseService {
+export class ValuesService extends BaseService {
 
     private actionUrl: string;
     private headers: Headers;

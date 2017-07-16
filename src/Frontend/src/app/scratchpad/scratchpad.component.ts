@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { DataService } from '../services/dataService';
+import { ValuesService } from '../services/values.service';
 
 @Component({
     selector: 'app-ngnco-scratchpad',
     templateUrl: 'scratchpad.component.html',
     styleUrls:  ['scratchpad.component.less'],
     providers: [
-        DataService
+        ValuesService
     ]
 })
 
@@ -18,7 +18,7 @@ export class ScratchpadComponent implements OnInit {
 
     constructor(
         private router: Router,
-        private _dataService: DataService
+        private valuesService: ValuesService
         ) {
 
         this.values = [];
@@ -26,7 +26,7 @@ export class ScratchpadComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this._dataService
+        this.valuesService
         .GetAll()
         .subscribe(data => this.values = data,
                 error => console.log(error),
