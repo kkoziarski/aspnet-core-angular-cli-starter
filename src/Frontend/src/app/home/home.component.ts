@@ -1,16 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import { InjectionToken } from '@angular/core';
+
+export const TITLE = new InjectionToken<string>('title');
+
+import { Component, OnInit, Inject } from '@angular/core';
 
 @Component({
     selector: 'app-ngnco-home',
-    templateUrl: 'home.component.html'
+    templateUrl: 'home.component.html',
+    providers: [
+        { provide: TITLE, useValue:'Hello from HomeComponent title' },
+    ]
 })
 
 export class HomeComponent implements OnInit {
-
-    public message: string;
-
-    constructor() {
-        this.message = 'Hello from HomeComponent ctor';
+    
+    constructor(@Inject(TITLE) public message: string) {
     }
 
     ngOnInit(): void {
