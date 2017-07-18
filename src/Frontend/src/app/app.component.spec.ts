@@ -40,22 +40,6 @@ describe('AppComponent', () => {
 
   beforeEach(() => {
     
-    TestBed.configureTestingModule({
-      imports: [
-        RouterTestingModule,
-        HttpModule
-      ],
-      declarations: [
-        AppComponent
-      ],
-      providers: [
-        AuthService,
-        AdalConfigService,
-        AdalService,
-        AuthHttp
-      ]
-    }).compileComponents(); // compile template and css
-
     fixture = TestBed.createComponent(AppComponent);
     appComp = fixture.componentInstance; // AppComponent test instance
 
