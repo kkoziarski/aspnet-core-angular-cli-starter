@@ -36,6 +36,25 @@ describe('AppComponent', () => {
         AuthHttp
       ]
     }).compileComponents(); // compile template and css
+  }));
+
+  beforeEach(() => {
+    
+    TestBed.configureTestingModule({
+      imports: [
+        RouterTestingModule,
+        HttpModule
+      ],
+      declarations: [
+        AppComponent
+      ],
+      providers: [
+        AuthService,
+        AdalConfigService,
+        AdalService,
+        AuthHttp
+      ]
+    }).compileComponents(); // compile template and css
 
     fixture = TestBed.createComponent(AppComponent);
     appComp = fixture.componentInstance; // AppComponent test instance
@@ -43,7 +62,7 @@ describe('AppComponent', () => {
     // query for the title <h1> by CSS element selector
     debugElemH1 = fixture.debugElement.query(By.css('h1'));
     compiledElemH1 = debugElemH1.nativeElement;
-  }));
+  });
 
   it('should create the app', async(() => {
     expect(appComp).toBeTruthy();
