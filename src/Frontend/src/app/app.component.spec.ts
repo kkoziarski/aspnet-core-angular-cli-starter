@@ -5,11 +5,15 @@ import { By } from '@angular/platform-browser'
 import { DebugElement } from '@angular/core';
 import { RouterTestingModule } from '@angular/router/testing';
 import { MockBackend } from '@angular/http/testing';
-import { HttpModule, Http, Response, ResponseOptions, XHRBackend } from '@angular/http';
 
-import { AdalService, OAuthData, AuthHttp } from 'ng2-adal/core';
+import { AdalService, AuthHttp } from 'ng2-adal/core';
+import { AdalServiceStub,  } from './services/tests/adal.service.stub';
+
 import { AdalConfigService } from './services/adal-config.service';
+import { AdalConfigServiceStub } from './services/tests/adal-config.service.stub';
+
 import { AuthService } from './services/auth.service';
+import { AuthServiceStub } from './services/tests/auth.service.stub';
 
 import { AppComponent } from './app.component';
 
@@ -24,22 +28,21 @@ describe('AppComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         RouterTestingModule,
-        HttpModule
       ],
       declarations: [
         AppComponent
       ],
       providers: [
-        AuthService,
-        AdalConfigService,
-        AdalService,
-        AuthHttp
+        { provide: AuthService, useClass: AuthServiceStub },
+        { provide: AdalConfigService, useClass: AdalConfigServiceStub }, 
+        { provide: AdalService, useClass: AdalServiceStub }, 
+        { provide: AuthHttp, useValue: {} }
       ]
     }).compileComponents(); // compile template and css
   }));
 
   beforeEach(() => {
-    
+
     fixture = TestBed.createComponent(AppComponent);
     appComp = fixture.componentInstance; // AppComponent test instance
 

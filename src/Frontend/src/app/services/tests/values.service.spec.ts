@@ -1,9 +1,9 @@
 import { TestBed, async, inject } from '@angular/core/testing';
 import { HttpModule, Http, Response, ResponseOptions, XHRBackend } from '@angular/http';
 import { MockBackend } from '@angular/http/testing';
-import { Configuration } from '../app.constants';
+import { Configuration } from '../../app.constants';
 
-import { ValuesService } from './values.service';
+import { ValuesService } from '../values.service';
 
 describe('valueService', () => {
 
