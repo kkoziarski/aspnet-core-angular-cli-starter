@@ -27,7 +27,7 @@
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li *ngIf="_user && isLoggedIn; else notLoggedUser;" class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                    <a href="#" class="dropdown-toggle" id="menu-user-name" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                         {{_user.profile.name}} <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu">

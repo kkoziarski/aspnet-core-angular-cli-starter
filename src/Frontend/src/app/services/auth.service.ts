@@ -12,7 +12,7 @@ import { environment } from '../../environments/environment';
 
 @Injectable()
 export class AuthService {
-  public userLoadededEvent: EventEmitter<User> = new EventEmitter<User>();
+  public userLoadedEvent: EventEmitter<User> = new EventEmitter<User>();
   public currentUser: User;
   public loggedIn = false;
 
@@ -45,7 +45,7 @@ export class AuthService {
           this.loggedIn = false;
         }
         this.currentUser = user;
-        this.userLoadededEvent.emit(user);
+        this.userLoadedEvent.emit(user);
       },
       error => {
         //console.log(error)

@@ -32,7 +32,7 @@ export class AppComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.authService.userLoadededEvent
+        this.authService.userLoadedEvent
             .subscribe(user => {
                 this._user = user;
                 this.isLoggedIn = this.authService.loggedIn;

@@ -6,7 +6,7 @@ import * as adalLib from 'adal-angular';
 import User = adalLib.User;
 
 export class AuthServiceStub {
-  public userLoadededEvent: EventEmitter<User> = new EventEmitter<User>();
+  public userLoadedEvent: EventEmitter<User> = new EventEmitter<User>();
   public currentUser: User;
   public loggedIn = false;
 

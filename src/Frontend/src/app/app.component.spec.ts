@@ -2,12 +2,12 @@
 
 import { TestBed, ComponentFixture, async } from '@angular/core/testing';
 import { By } from '@angular/platform-browser'
-import { DebugElement } from '@angular/core';
+import { DebugElement, EventEmitter } from '@angular/core';
 import { RouterTestingModule } from '@angular/router/testing';
 import { MockBackend } from '@angular/http/testing';
 
 import { AdalService, AuthHttp } from 'ng2-adal/core';
-import { AdalServiceStub,  } from './services/tests/adal.service.stub';
+import { AdalServiceStub, } from './services/tests/adal.service.stub';
 
 import { AdalConfigService } from './services/adal-config.service';
 import { AdalConfigServiceStub } from './services/tests/adal-config.service.stub';
@@ -23,8 +23,13 @@ describe('AppComponent', () => {
   let debugElemH1: DebugElement;
   let compiledElemH1: HTMLElement;
 
+  let authService: AuthService;
+  let adalService: AdalService;
+
+  let user: any;
+
   beforeEach(async(() => {
-    
+
     TestBed.configureTestingModule({
       imports: [
         RouterTestingModule,
@@ -33,9 +38,11 @@ describe('AppComponent', () => {
         AppComponent
       ],
       providers: [
+        // AuthService,
         { provide: AuthService, useClass: AuthServiceStub },
-        { provide: AdalConfigService, useClass: AdalConfigServiceStub }, 
-        { provide: AdalService, useClass: AdalServiceStub }, 
+        { provide: AdalConfigService, useClass: AdalConfigServiceStub },
+        // AdalService,
+        { provide: AdalService, useClass: AdalServiceStub },
         { provide: AuthHttp, useValue: {} }
       ]
     }).compileComponents(); // compile template and css
@@ -49,6 +56,10 @@ describe('AppComponent', () => {
     // query for the title <h1> by CSS element selector
     debugElemH1 = fixture.debugElement.query(By.css('h1'));
     compiledElemH1 = debugElemH1.nativeElement;
+    authService = fixture.debugElement.injector.get(AuthService);
+    adalService = fixture.debugElement.injector.get(AdalService);
+
+    user = { profile: { name: 'test user' } };
   });
 
   it('should create the app', async(() => {
@@ -68,5 +79,108 @@ describe('AppComponent', () => {
     appComp.title = 'Test title';
     fixture.detectChanges();
     expect(compiledElemH1.textContent).toContain('Test title');
+  }));
+
+  it('should automatically invoke authService.getUser OnInit', async(() => {
+    let spy = spyOn(authService, 'getUser');
+    fixture.detectChanges();
+    fixture.whenStable().then(() => { // wait for async getUser
+      fixture.detectChanges();        // update view
+      expect(spy.calls.any()).toBe(true, 'getUser has been called');
+    });
+  }));
+
+  it('should automatically invoke adalService.init in component constructor', async(() => {
+    let spy = spyOn(adalService, 'init');
+    expect(spy.calls.any()).toBe(false, 'init has been called but should not be');
+
+    let _fixture = TestBed.createComponent(AppComponent);
+    let _appComp = fixture.componentInstance;
+    fixture.detectChanges();
+
+    expect(spy.calls.any()).toBe(true, 'init has not been called');
+  }));
+
+  it('should automatically invoke adalService.handleWindowCallback in component constructor', async(() => {
+    let spy = spyOn(adalService, 'handleWindowCallback');
+    expect(spy.calls.any()).toBe(false, 'handleWindowCallback has been called but should not be');
+
+    let _fixture = TestBed.createComponent(AppComponent);
+    let _appComp = fixture.componentInstance;
+    fixture.detectChanges();
+
+    expect(spy.calls.any()).toBe(true, 'handleWindowCallback has not been called');
+  }));
+
+  it('should set user on userLoadedEvent', async(() => {
+    fixture.detectChanges();
+
+    expect(appComp._user).toBeUndefined();
+
+    // act
+    authService.userLoadedEvent.emit(user);
+    fixture.detectChanges();
+
+    expect(appComp._user).toBeDefined();
+    expect(appComp._user).toBe(user);
+  }));
+
+  it('should set isLoggedIn true on userLoadedEvent', async(() => {
+    fixture.detectChanges();
+
+    authService.loggedIn = true;
+    authService.userLoadedEvent.emit(user);
+    fixture.detectChanges();
+
+    expect(appComp.isLoggedIn).toBe(true);
+  }));
+
+  it('should set isLoggedIn false on userLoadedEvent', async(() => {
+    fixture.detectChanges();
+
+    authService.loggedIn = false;
+    authService.userLoadedEvent.emit(user);
+    fixture.detectChanges();
+
+    expect(appComp.isLoggedIn).toBe(false);
+  }));
+
+  it('logIn() should invoke adalService.login', async(() => {
+    let spy = spyOn(adalService, 'login');
+    appComp.logIn();
+    expect(spy.calls.any()).toBe(true, 'login has been called');
+  }));
+
+  it('should show user name when user is logged in', async(() => {
+    fixture.detectChanges();
+
+    authService.loggedIn = true;
+    authService.userLoadedEvent.emit(user);
+    fixture.detectChanges();
+
+    let userNameDebug = fixture.debugElement.query(By.css('#menu-user-name'));
+    let compiledUserNameElem = userNameDebug.nativeElement;
+    fixture.detectChanges();
+
+    expect(compiledUserNameElem.textContent).toContain(user.profile.name);
+  }));
+
+  it('should not show user name when user is not logged in', async(() => {
+    fixture.detectChanges();
+
+    authService.loggedIn = false;
+    authService.userLoadedEvent.emit(user);
+    fixture.detectChanges();
+
+    let userNameDebug = fixture.debugElement.query(By.css('#menu-user-name'));
+    fixture.detectChanges();
+
+    expect(userNameDebug).toBeNull();
+  }));
+
+  it('logOut() should invoke adalService.logOut', async(() => {
+    let spy = spyOn(adalService, 'logOut');
+    appComp.logOut();
+    expect(spy.calls.any()).toBe(true, 'login has been called');
   }));
 });
