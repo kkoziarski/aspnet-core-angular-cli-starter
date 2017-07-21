@@ -14,7 +14,7 @@ import { HeroService } from '../services/hero.service';
                 <span class="badge pull-left">{{hero.id}}</span>
                 <a [routerLink]="['/heroes', hero.id]">{{hero.name}}</a>
             </li>
-        </ul>  
+        </ul>
       </div>
     </div>
   `,

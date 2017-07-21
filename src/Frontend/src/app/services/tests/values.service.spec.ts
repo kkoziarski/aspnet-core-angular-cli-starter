@@ -35,7 +35,7 @@ describe('valueService', () => {
                         'Value 3'
                     ];
 
-                // const mockResponse = { 
+                // const mockResponse = {
                 //     data: [
                 //          { id: 0, name: 'Value 0' }
                 //     ]

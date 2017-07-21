@@ -5,7 +5,7 @@ import { Configuration } from '../app.constants';
 
 import 'rxjs/add/operator/map';
 
-import { BaseService } from "./base.service";
+import { BaseService } from './base.service';
 
 @Injectable()
 export class ValuesService extends BaseService {
@@ -24,7 +24,7 @@ export class ValuesService extends BaseService {
     }
 
     public GetAll = (): Observable<any> => {
-        let options = new RequestOptions({ headers: this.headers, body: '' });
+        const options = new RequestOptions({ headers: this.headers, body: '' });
         return this._http
             .get(this.actionUrl, options)
             .map(this.extractData)

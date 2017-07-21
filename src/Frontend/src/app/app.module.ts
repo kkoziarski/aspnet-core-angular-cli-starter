@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule  } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http'; 
+import { HttpModule } from '@angular/http';
 import { CommonModule } from '@angular/common';
 import './rxjs-extensions';
 import { AdalService, OAuthData, AuthHttp } from 'ng2-adal/core';

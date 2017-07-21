@@ -8,12 +8,12 @@ import { Component, OnInit, Inject } from '@angular/core';
     selector: 'app-ngnco-home',
     templateUrl: 'home.component.html',
     providers: [
-        { provide: TITLE, useValue:'Hello from HomeComponent title' },
+        { provide: TITLE, useValue: 'Hello from HomeComponent title' },
     ]
 })
 
 export class HomeComponent implements OnInit {
-    
+
     constructor(@Inject(TITLE) public message: string) {
     }
 

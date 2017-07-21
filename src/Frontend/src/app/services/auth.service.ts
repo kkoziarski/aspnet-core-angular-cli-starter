@@ -25,7 +25,6 @@ export class AuthService {
     private authHttp: AuthHttp,
     private adalService: AdalService) {
       this.tokenResource = this.adalConfigService.adalConfig.clientId;
-      //this.getUser();
   }
 
   clearCache() {
@@ -37,7 +36,7 @@ export class AuthService {
     this.adalService
       .getUser()
       .subscribe(user => {
-        if(user){
+        if (user) {
           console.log('got user', user);
           this.loggedIn = true;
           this.currentUser = user;
@@ -48,7 +47,7 @@ export class AuthService {
         this.userLoadedEvent.emit(user);
       },
       error => {
-        //console.log(error)
+        // console.log(error)
         console.log('getUser error');
         this.loggedIn = false;
       },
@@ -89,7 +88,7 @@ export class AuthService {
   }
 
   callApi(url: string): Observable<Response> {
-    //const access_token = this.adalService.getCachedToken(this.tokenResource);
+    // const access_token = this.adalService.getCachedToken(this.tokenResource);
     return this.adalService
       .acquireToken(this.tokenResource)
       .flatMap<string, Response>((token) => {

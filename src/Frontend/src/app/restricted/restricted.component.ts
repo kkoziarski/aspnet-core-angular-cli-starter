@@ -22,7 +22,7 @@ export class RestrictedComponent implements OnInit {
         private location: Location,
         private authService: AuthService,
         private adalService: AdalService) {
-        
+
         this.apiType = 'secrets';
         this.message = 'Hello from RestrictedComponent';
     }
@@ -56,15 +56,14 @@ export class RestrictedComponent implements OnInit {
     acquireToken() {
         this.authService.acquireToken()
             .subscribe(p => {
-                console.log("Acquired token = " + p);
-                //then you could set Authorization Bearer header and call microsft graph api 
+                console.log('Acquired token = ' + p);
+                // then you could set Authorization Bearer header and call microsft graph api
             },
             (error => {
                 console.log(error);
             }));
     }
 
-    
     public logOut() {
         this.adalService.logOut();
     }

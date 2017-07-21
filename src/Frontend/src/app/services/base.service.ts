@@ -3,8 +3,8 @@ import { Observable } from 'rxjs/Observable';
 
 export class BaseService {
 
-    protected extractData<TType>(res: Response) : TType {
-        let responseBody = res.json();
+    protected extractData<TType>(res: Response): TType {
+        const responseBody = res.json();
         return (responseBody || {}) as TType;
     }
 

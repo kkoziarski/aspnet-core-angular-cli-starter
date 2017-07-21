@@ -82,7 +82,7 @@ describe('AppComponent', () => {
   }));
 
   it('should automatically invoke authService.getUser OnInit', async(() => {
-    let spy = spyOn(authService, 'getUser');
+    const spy = spyOn(authService, 'getUser');
     fixture.detectChanges();
     fixture.whenStable().then(() => { // wait for async getUser
       fixture.detectChanges();        // update view
@@ -91,22 +91,22 @@ describe('AppComponent', () => {
   }));
 
   it('should automatically invoke adalService.init in component constructor', async(() => {
-    let spy = spyOn(adalService, 'init');
+    const spy = spyOn(adalService, 'init');
     expect(spy.calls.any()).toBe(false, 'init has been called but should not be');
 
-    let _fixture = TestBed.createComponent(AppComponent);
-    let _appComp = fixture.componentInstance;
+    const _fixture = TestBed.createComponent(AppComponent);
+    const _appComp = fixture.componentInstance;
     fixture.detectChanges();
 
     expect(spy.calls.any()).toBe(true, 'init has not been called');
   }));
 
   it('should automatically invoke adalService.handleWindowCallback in component constructor', async(() => {
-    let spy = spyOn(adalService, 'handleWindowCallback');
+    const spy = spyOn(adalService, 'handleWindowCallback');
     expect(spy.calls.any()).toBe(false, 'handleWindowCallback has been called but should not be');
 
-    let _fixture = TestBed.createComponent(AppComponent);
-    let _appComp = fixture.componentInstance;
+    const _fixture = TestBed.createComponent(AppComponent);
+    const _appComp = fixture.componentInstance;
     fixture.detectChanges();
 
     expect(spy.calls.any()).toBe(true, 'handleWindowCallback has not been called');
@@ -146,7 +146,7 @@ describe('AppComponent', () => {
   }));
 
   it('logIn() should invoke adalService.login', async(() => {
-    let spy = spyOn(adalService, 'login');
+    const spy = spyOn(adalService, 'login');
     appComp.logIn();
     expect(spy.calls.any()).toBe(true, 'login has been called');
   }));
@@ -158,8 +158,8 @@ describe('AppComponent', () => {
     authService.userLoadedEvent.emit(user);
     fixture.detectChanges();
 
-    let userNameDebug = fixture.debugElement.query(By.css('#menu-user-name'));
-    let compiledUserNameElem = userNameDebug.nativeElement;
+    const userNameDebug = fixture.debugElement.query(By.css('#menu-user-name'));
+    const compiledUserNameElem = userNameDebug.nativeElement;
     fixture.detectChanges();
 
     expect(compiledUserNameElem.textContent).toContain(user.profile.name);
@@ -172,14 +172,14 @@ describe('AppComponent', () => {
     authService.userLoadedEvent.emit(user);
     fixture.detectChanges();
 
-    let userNameDebug = fixture.debugElement.query(By.css('#menu-user-name'));
+    const userNameDebug = fixture.debugElement.query(By.css('#menu-user-name'));
     fixture.detectChanges();
 
     expect(userNameDebug).toBeNull();
   }));
 
   it('logOut() should invoke adalService.logOut', async(() => {
-    let spy = spyOn(adalService, 'logOut');
+    const spy = spyOn(adalService, 'logOut');
     appComp.logOut();
     expect(spy.calls.any()).toBe(true, 'login has been called');
   }));

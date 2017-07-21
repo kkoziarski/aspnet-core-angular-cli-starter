@@ -44,7 +44,7 @@ export class AppComponent implements OnInit {
         this.adalService.login();
         return false;
     }
-    
+
     public logOut() {
         this.adalService.logOut();
         return false;
