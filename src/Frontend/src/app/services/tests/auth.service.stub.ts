@@ -42,19 +42,19 @@ export class AuthServiceStub {
     return Observable.of(this.createEmptyResponse());
   }
 
-  AuthGet(url: string, options?: RequestOptions): Observable<Response> {
+  authGet(url: string, options?: RequestOptions): Observable<Response> {
     return Observable.of(this.createEmptyResponse());
   }
 
-  AuthPut(url: string, data: any, options?: RequestOptions): Observable<Response> {
+  authPut(url: string, data: any, options?: RequestOptions): Observable<Response> {
     return Observable.of(this.createEmptyResponse());
   }
 
-  AuthDelete(url: string, options?: RequestOptions): Observable<Response> {
+  authDelete(url: string, options?: RequestOptions): Observable<Response> {
     return Observable.of(this.createEmptyResponse());
   }
 
-  AuthPost(url: string, data: any, options?: RequestOptions): Observable<Response> {
+  authPost(url: string, data: any, options?: RequestOptions): Observable<Response> {
     return Observable.of(this.createEmptyResponse());
   }
 }
