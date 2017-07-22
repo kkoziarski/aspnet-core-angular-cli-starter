@@ -56,6 +56,7 @@ describe('AppComponent', () => {
     // query for the title <h1> by CSS element selector
     debugElemH1 = fixture.debugElement.query(By.css('h1'));
     compiledElemH1 = debugElemH1.nativeElement;
+
     authService = fixture.debugElement.injector.get(AuthService);
     adalService = fixture.debugElement.injector.get(AdalService);
 
