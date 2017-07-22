@@ -13,7 +13,7 @@ import { AuthService } from './services/auth.service';
 export class AppComponent implements OnInit {
     title = 'Hello from AppComponent';
     copyYear: number;
-    _user: any;
+    user: any;
     isLoggedIn: boolean;
 
 
@@ -34,7 +34,7 @@ export class AppComponent implements OnInit {
     ngOnInit() {
         this.authService.userLoadedEvent
             .subscribe(user => {
-                this._user = user;
+                this.user = user;
                 this.isLoggedIn = this.authService.loggedIn;
             });
         this.authService.getUser();

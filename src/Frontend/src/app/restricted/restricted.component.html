@@ -24,10 +24,10 @@
         <button (click)="acquireToken()" id='getUser' class="btn btn-warning">aquire token</button>
     </div>
 </div>
-<div *ngIf="_user" class="panel panel-default">
-  <pre>{{_user | json}}</pre>
+<div *ngIf="user" class="panel panel-default">
+  <pre>{{user | json}}</pre>
 </div>
-<div *ngIf="_apiValues" class="panel panel-default">
-  <pre>{{_apiValues | json}}</pre>
+<div *ngIf="apiValues" class="panel panel-default">
+  <pre>{{apiValues | json}}</pre>
 </div>
 

@@ -11,9 +11,8 @@ import { environment } from '../../environments/environment';
 })
 
 export class RestrictedComponent implements OnInit {
-    public _user: any;
-    public _apiValues: any;
-    public loadedUserSub: any;
+    public user: any;
+    public apiValues: any;
     public isLoggedIn: boolean;
     public apiType: string;
     public message: string;
@@ -28,9 +27,9 @@ export class RestrictedComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.loadedUserSub = this.authService.userLoadedEvent
+        this.authService.userLoadedEvent
             .subscribe(user => {
-                this._user = user;
+                this.user = user;
             });
         this.authService.isLoggedIn().subscribe(u => this.isLoggedIn = u);
     }
@@ -48,7 +47,7 @@ export class RestrictedComponent implements OnInit {
         this.authService
             .callApi(url)
             .subscribe(result => {
-                this._apiValues = result.json();
+                this.apiValues = result.json();
             },
             error => console.log(error));
     }

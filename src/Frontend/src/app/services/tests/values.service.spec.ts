@@ -26,7 +26,7 @@ describe('valueService', () => {
     describe('GetAll()', () => {
 
         it('should return an Observable<Array<string>>',
-            inject([ValuesService, XHRBackend], (valueService, mockBackend) => {
+             async(inject([ValuesService, XHRBackend], (valueService, mockBackend) => {
 
                 const mockResponse = [
                         'Value 0',
@@ -47,7 +47,7 @@ describe('valueService', () => {
                     })));
                 });
 
-                valueService.GetAll()
+                valueService.getAll()
                     .subscribe((values) => {
                         expect(values.length).toBe(4);
                         expect(values[0]).toEqual('Value 0');
@@ -56,6 +56,6 @@ describe('valueService', () => {
                         expect(values[3]).toEqual('Value 3');
                     });
 
-            }));
+            })));
     });
 });

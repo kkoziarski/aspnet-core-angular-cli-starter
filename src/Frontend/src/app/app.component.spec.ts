@@ -115,14 +115,14 @@ describe('AppComponent', () => {
   it('should set user on userLoadedEvent', async(() => {
     fixture.detectChanges();
 
-    expect(appComp._user).toBeUndefined();
+    expect(appComp.user).toBeUndefined();
 
     // act
     authService.userLoadedEvent.emit(user);
     fixture.detectChanges();
 
-    expect(appComp._user).toBeDefined();
-    expect(appComp._user).toBe(user);
+    expect(appComp.user).toBeDefined();
+    expect(appComp.user).toBe(user);
   }));
 
   it('should set isLoggedIn true on userLoadedEvent', async(() => {

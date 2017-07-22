@@ -23,7 +23,7 @@ export class ValuesService extends BaseService {
         this.headers.append('Accept', 'application/json');
     }
 
-    public GetAll = (): Observable<any> => {
+    public getAll = (): Observable<any> => {
         const options = new RequestOptions({ headers: this.headers, body: '' });
         return this._http
             .get(this.actionUrl, options)
@@ -31,14 +31,14 @@ export class ValuesService extends BaseService {
             .catch(this.handleError);
     }
 
-    public GetSingle = (id: number): Observable<Response> => {
+    public getSingle = (id: number): Observable<Response> => {
         return this._http
             .get(this.actionUrl + id)
             .map(this.extractData)
             .catch(this.handleError);
     }
 
-    public Add = (itemName: string): Observable<Response> => {
+    public add = (itemName: string): Observable<Response> => {
         const toAdd = JSON.stringify({ ItemName: itemName });
 
         return this._http
@@ -47,14 +47,14 @@ export class ValuesService extends BaseService {
             .catch(this.handleError);
     }
 
-    public Update = (id: number, itemToUpdate: any): Observable<Response> => {
+    public update = (id: number, itemToUpdate: any): Observable<Response> => {
         return this._http
             .put(this.actionUrl + id, JSON.stringify(itemToUpdate), { headers: this.headers })
             .map(res => this.extractData(res))
             .catch(this.handleError);
     }
 
-    public Delete = (id: number): Observable<Response> => {
+    public delete = (id: number): Observable<Response> => {
         return this._http
             .delete(this.actionUrl + id)
             .catch(this.handleError);

@@ -27,7 +27,7 @@ export class ScratchpadComponent implements OnInit {
 
     ngOnInit(): void {
         this.valuesService
-        .GetAll()
+        .getAll()
         .subscribe(data => this.values = data,
                 error => console.log(error),
                 () => console.log('Get all complete'));
