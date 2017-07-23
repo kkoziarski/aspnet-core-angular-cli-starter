@@ -72,17 +72,17 @@ export class AuthService {
   }
 
   callSecretApi(): Observable<Response> {
-    const url = `${environment.backend_server}/api/secrets`;
+    const url = `${environment.backend_server_url}/api/secrets`;
     return this.callApi(url);
   }
 
   callClaimsApi(): Observable<Response> {
-    const url = `${environment.backend_server}/api/secrets`;
+    const url = `${environment.backend_server_url}/api/secrets`;
     return this.callApi(url);
   }
 
   callValuesApi(): Observable<Response> {
-    const url = `${environment.backend_server}/api/secrets`;
+    const url = `${environment.backend_server_url}/api/secrets`;
     return this.callApi(url);
   }
 

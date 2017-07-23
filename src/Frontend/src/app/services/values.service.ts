@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
-import { Configuration } from '../app.constants';
 
 import 'rxjs/add/operator/map';
+
+import { environment } from '../../environments/environment';
 
 import { BaseService } from './base.service';
 
@@ -13,10 +14,10 @@ export class ValuesService extends BaseService {
     private actionUrl: string;
     private headers: Headers;
 
-    constructor(private _http: Http, private _configuration: Configuration) {
+    constructor(private _http: Http) {
         super();
 
-        this.actionUrl = _configuration.ServerWithApiUrl + 'values/';
+        this.actionUrl = `${environment.backend_server_url}/api/values/`;
 
         this.headers = new Headers();
         this.headers.append('Content-Type', 'application/json');

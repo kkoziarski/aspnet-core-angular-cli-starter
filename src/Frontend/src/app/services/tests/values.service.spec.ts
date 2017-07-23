@@ -16,15 +16,14 @@ import {
     RequestMethod
 } from '@angular/http';
 
-import { Configuration } from '../../app.constants';
 import { ValuesService } from '../values.service';
 
-describe('valueService', () => {
-    class ConfigurationMock {
-        public ServerWithApiUrl = 'http://test-mock.com/';
-    }
+import { environment } from '../../../environments/environment';
 
-    let configuration: Configuration;
+describe('valueService', () => {
+
+    const backend_server_url = 'http://localhost:99999';
+    const values_url = backend_server_url + '/api/values';
 
     beforeEach(async(() => {
 
@@ -33,7 +32,6 @@ describe('valueService', () => {
             providers: [
                 ValuesService,
 
-                { provide: Configuration, useClass: ConfigurationMock },
                 { provide: XHRBackend, useClass: MockBackend }
             ]
         }).compileComponents();
@@ -45,17 +43,13 @@ describe('valueService', () => {
         const service = TestBed.get(ValuesService);
         expect(service).toBeDefined();
 
-        configuration = TestBed.get(Configuration);
-
         // console.log('beforeEach.second');
+        environment.backend_server_url = backend_server_url;
     });
 
-    it('should inject correct configuration', () => {
+    it('should set correct environment server url', () => {
 
-        const localConfig = TestBed.get(Configuration);
-
-        expect(localConfig).toBeDefined();
-        expect(localConfig.ServerWithApiUrl).toBe('http://test-mock.com/');
+        expect(environment.backend_server_url).toBe(backend_server_url);
     });
 
     it('getAll() should return an Observable<Array<string>>',
@@ -107,10 +101,10 @@ describe('valueService', () => {
                 });
         })));
 
-    it('getSingle(12) should invoke /values/12 url',
+    it('getSingle(12) should invoke api/values/12 url',
         async(inject([ValuesService, XHRBackend], (valueService: ValuesService, mockBackend) => {
             const id = 12;
-            const expectedUrl = `${this.configuration.ServerWithApiUrl}values/${id}`;
+            const expectedUrl = `${values_url}/${id}`;
 
             mockBackend.connections.subscribe(
                 (connection: MockConnection) => {
@@ -130,7 +124,7 @@ describe('valueService', () => {
     it('add() should send correct request',
         async(inject([ValuesService, XHRBackend], (valueService: ValuesService, mockBackend) => {
             const itemName = 'item to add';
-            const expectedUrl = `${this.configuration.ServerWithApiUrl}values/`;
+            const expectedUrl = `${values_url}/`;
 
             mockBackend.connections.subscribe(
                 (connection: MockConnection) => {
@@ -158,7 +152,7 @@ describe('valueService', () => {
             const id = 32;
             const itemName = 'item to update';
             const itemToUpdate: any = { ItemName: itemName }
-            const expectedUrl = `${this.configuration.ServerWithApiUrl}values/${id}`;
+            const expectedUrl = `${values_url}/${id}`;
 
             mockBackend.connections.subscribe(
                 (connection: MockConnection) => {
@@ -184,7 +178,7 @@ describe('valueService', () => {
     it('delete(12) should invoke /values/12 url',
         async(inject([ValuesService, XHRBackend], (valueService: ValuesService, mockBackend) => {
             const id = 12;
-            const expectedUrl = `${this.configuration.ServerWithApiUrl}values/${id}`;
+            const expectedUrl = `${values_url}/${id}`;
 
             mockBackend.connections.subscribe(
                 (connection: MockConnection) => {

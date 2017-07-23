@@ -4,7 +4,6 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
 import { HeroService } from '../services/hero.service';
-import { Configuration } from '../app.constants';
 
 import { HeroesComponent } from './heroes.component';
 import { HeroesListComponent } from './heroes-list.component';
@@ -29,8 +28,7 @@ import { HeroesRoutingModule } from './heroes-routing.module';
         HeroSearchComponent
     ],
     providers: [
-        HeroService,
-        Configuration
+        HeroService
     ],
 })
 export class HeroesModule { }

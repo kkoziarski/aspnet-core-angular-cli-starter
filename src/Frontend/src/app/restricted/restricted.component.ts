@@ -43,7 +43,7 @@ export class RestrictedComponent implements OnInit {
     }
 
     callApi() {
-        const url = `${environment.backend_server}/api/${this.apiType}`;
+        const url = `${environment.backend_server_url}/api/${this.apiType}`;
         this.authService
             .callApi(url)
             .subscribe(result => {

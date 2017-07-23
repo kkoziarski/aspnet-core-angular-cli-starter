@@ -2,20 +2,21 @@ import { Injectable } from '@angular/core';
 import { Headers, Http, Response, RequestMethod } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 
-import { BaseService } from './base.service';
-
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/catch';
 import 'rxjs/Rx';
 
+import { environment } from '../../environments/environment';
+
+import { BaseService } from './base.service';
 import { Hero } from '../heroes/hero';
 
 @Injectable()
 export class HeroService extends BaseService {
 
   private headers = new Headers({'Content-Type': 'application/json'});
-  private heroesUrl = 'api/heroes';  // URL to web api
+  private heroesUrl = `${environment.backend_server_url}/api/heroes`;  // URL to web api
 
   constructor(private http: Http) {
       super();

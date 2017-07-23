@@ -4,7 +4,6 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
 import { HeroService } from '../services/hero.service';
-import { Configuration } from '../app.constants';
 
 import { LazyHeroesComponent } from './lazy-heroes.component';
 import { LazyHeroesListComponent } from './lazy-heroes-list.component';
@@ -25,8 +24,7 @@ import { LazyHeroesRoutingModule } from './lazy-heroes-routing.module';
         LazyHeroDetailComponent
     ],
     providers: [
-        HeroService,
-        Configuration
+        HeroService
     ],
 })
 export class LazyHeroesModule { }

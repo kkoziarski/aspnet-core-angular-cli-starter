@@ -20,7 +20,6 @@ import { ScratchpadComponent } from './scratchpad/scratchpad.component';
 import { RestrictedComponent } from './restricted/restricted.component';
 
 import { ValuesService } from './services/values.service';
-import { Configuration } from './app.constants';
 
 import { HeroesModule } from './heroes/heroes.module';
 import { AppRoutingModule } from './app-routing.module';
@@ -44,7 +43,6 @@ import { AppRoutingModule } from './app-routing.module';
     ],
     providers: [
         ValuesService,
-        Configuration,
         AuthService,
         AdalConfigService,
         AuthenticationGuard,
