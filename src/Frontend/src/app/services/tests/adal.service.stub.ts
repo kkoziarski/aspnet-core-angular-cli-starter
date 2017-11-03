@@ -1,6 +1,6 @@
 import * as adalLib from 'adal-angular';
 import User = adalLib.User;
-import { AdalService, OAuthData, AuthHttp } from 'ng2-adal/core';
+import { AdalService, OAuthData } from 'ng2-adal/dist/core';
 import { Observable } from 'rxjs/Rx';
 
 export class AdalServiceStub extends AdalService {

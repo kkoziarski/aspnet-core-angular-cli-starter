@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule  } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import './rxjs-extensions';
-import { AdalService, OAuthData, AuthHttp } from 'ng2-adal/core';
+import { AdalService, OAuthData } from 'ng2-adal/dist/core';
 
 import { AdalConfigService } from './services/adal-config.service';
 import { AuthService } from './services/auth.service';
@@ -28,7 +28,7 @@ import { AppRoutingModule } from './app-routing.module';
     imports:      [
         BrowserModule,
         FormsModule,
-        HttpModule,
+        HttpClientModule,
         AppRoutingModule,
         HeroesModule
     ],
@@ -46,8 +46,7 @@ import { AppRoutingModule } from './app-routing.module';
         AuthService,
         AdalConfigService,
         AuthenticationGuard,
-        AdalService,
-        AuthHttp
+        AdalService
     ],
     entryComponents: [ AppComponent ],
     bootstrap:    [ AppComponent ]

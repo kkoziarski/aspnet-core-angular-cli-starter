@@ -1,5 +1,5 @@
 import { EventEmitter } from '@angular/core';
-import { RequestOptions, ResponseOptions, Response } from '@angular/http';
+import { HttpClient, HttpResponse, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Rx';
 
 import * as adalLib from 'adal-angular';
@@ -10,8 +10,8 @@ export class AuthServiceStub {
   public currentUser: User;
   public loggedIn = false;
 
-  private createEmptyResponse(): Response {
-    return new Response(new ResponseOptions({ body: '' }));
+  private createEmptyResponse(): HttpResponse<Object> {
+    return new HttpResponse({ body: '' });
   }
 
   clearCache() { }
@@ -26,35 +26,35 @@ export class AuthServiceStub {
     return Observable.of('token stub');
   }
 
-  callSecretApi(): Observable<Response> {
+  callSecretApi(): Observable<HttpResponse<Object>> {
     return Observable.of(this.createEmptyResponse());
   }
 
-  callClaimsApi(): Observable<Response> {
+  callClaimsApi(): Observable<HttpResponse<Object>> {
     return Observable.of(this.createEmptyResponse());
   }
 
-  callValuesApi(): Observable<Response> {
+  callValuesApi(): Observable<HttpResponse<Object>> {
     return Observable.of(this.createEmptyResponse());
   }
 
-  callApi(url: string): Observable<Response> {
+  callApi(url: string): Observable<HttpResponse<Object>> {
     return Observable.of(this.createEmptyResponse());
   }
 
-  authGet(url: string, options?: RequestOptions): Observable<Response> {
+  authGet(url: string, headers?: HttpHeaders): Observable<HttpResponse<Object>> {
     return Observable.of(this.createEmptyResponse());
   }
 
-  authPut(url: string, data: any, options?: RequestOptions): Observable<Response> {
+  authPut(url: string, data: any, headers?: HttpHeaders): Observable<HttpResponse<Object>> {
     return Observable.of(this.createEmptyResponse());
   }
 
-  authDelete(url: string, options?: RequestOptions): Observable<Response> {
+  authDelete(url: string, headers?: HttpHeaders): Observable<HttpResponse<Object>> {
     return Observable.of(this.createEmptyResponse());
   }
 
-  authPost(url: string, data: any, options?: RequestOptions): Observable<Response> {
+  authPost(url: string, data: any, headers?: HttpHeaders): Observable<HttpResponse<Object>> {
     return Observable.of(this.createEmptyResponse());
   }
 }

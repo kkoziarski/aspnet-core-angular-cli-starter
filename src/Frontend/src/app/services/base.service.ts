@@ -3,10 +3,10 @@ import { Observable } from 'rxjs/Observable';
 
 export class BaseService {
 
-    protected extractData<TType>(res: Response): TType {
-        const responseBody = res.json();
-        return (responseBody || {}) as TType;
-    }
+    // protected extractData<TType>(res: Response): TType {
+    //     const responseBody = res.json();
+    //     return (responseBody || {}) as TType;
+    // }
 
     protected handleError(error: Response | any) {
         // TODO: logging could go here

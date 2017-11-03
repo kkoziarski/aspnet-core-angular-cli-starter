@@ -6,7 +6,7 @@ import { DebugElement, EventEmitter } from '@angular/core';
 import { RouterTestingModule } from '@angular/router/testing';
 import { MockBackend } from '@angular/http/testing';
 
-import { AdalService, AuthHttp } from 'ng2-adal/core';
+import { AdalService } from 'ng2-adal/dist/core';
 import { AdalServiceStub, } from './services/tests/adal.service.stub';
 
 import { AdalConfigService } from './services/adal-config.service';
@@ -42,8 +42,7 @@ describe('AppComponent', () => {
         { provide: AuthService, useClass: AuthServiceStub },
         { provide: AdalConfigService, useClass: AdalConfigServiceStub },
         // AdalService,
-        { provide: AdalService, useClass: AdalServiceStub },
-        { provide: AuthHttp, useValue: {} }
+        { provide: AdalService, useClass: AdalServiceStub }
       ]
     }).compileComponents(); // compile template and css
   }));

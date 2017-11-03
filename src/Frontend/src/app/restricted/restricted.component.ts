@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { AuthService } from '../services/auth.service';
-import { AdalService } from 'ng2-adal/core';
+import { AdalService } from 'ng2-adal/dist/core';
 
 import { environment } from '../../environments/environment';
 
@@ -47,7 +47,7 @@ export class RestrictedComponent implements OnInit {
         this.authService
             .callApi(url)
             .subscribe(result => {
-                this.apiValues = result.json();
+                this.apiValues = result;
             },
             error => console.log(error));
     }

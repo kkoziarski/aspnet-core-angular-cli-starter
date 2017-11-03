@@ -19,7 +19,7 @@ export class HeroDetailResolve implements Resolve<any> {
                     return hero;
                 } else { // id not found
                     this.router.navigate(['/heroes']);
-                    return false;
+                    return null;
                 }
             })
             .first();
